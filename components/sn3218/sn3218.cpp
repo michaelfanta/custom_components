@@ -52,7 +52,7 @@ namespace esphome {
                     uint16_t value = this->output_value[channel];
 
                     this->sn3218_set(channel, value);
-                    ESP_LOGI(TAG, "Channel %02u: value=%04u", channel, value);
+                    //ESP_LOGI(TAG, "Channel %02u: value=%04u", channel, value);
                 }
 
                 this->sn3218_update();
