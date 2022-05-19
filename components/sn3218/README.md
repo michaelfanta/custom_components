@@ -4,7 +4,6 @@
 
 Pimoroni SN3218 - https://shop.pimoroni.com/products/18-channel-8-bit-pwm-led-driver-w-i2c-interface
 
-This component is still under development...
 
 
 ```yaml
