@@ -1,4 +1,4 @@
-# SN3218 output component for ESPHome
+# SN3218 component for ESPHome
 
 ***(Tested on ESP32-F)***
 
