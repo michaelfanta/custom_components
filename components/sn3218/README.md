@@ -23,6 +23,13 @@ output:
     channel: 0
     id: 'sn3218_channel_0'
 
+light:
+  - platform: sn3218
+    output: sn3218_channel_0
+    name: SN3218 Light 0
+
+OR
+
 switch:
   - platform: output
     output: sn3218_channel_0
