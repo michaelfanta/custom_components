@@ -3,6 +3,7 @@
 #include "esphome.h"
 #include "esphome/core/component.h"
 #include "esphome/components/output/float_output.h"
+#include "esphome/components/light/light_output.h"
 #include "esphome/components/i2c/i2c.h"
 
 namespace esphome {
@@ -20,10 +21,20 @@ namespace esphome {
             uint8_t channel_;
         };
 
+        class SN3218Light : public light::LightOutput {
+            public:
+                light::LightTraits get_traits() override;
+                void set_output(output::FloatOutput *output) { output_ = output; }
+                void write_state(light::LightState *state) override;
+
+            protected:
+                output::FloatOutput *output_;
+        };
+
         class SN3218Component : public i2c::I2CDevice, public Component {
             public:
                 SN3218Channel *create_channel(uint8_t channel);
-
+                
                 void setup() override;
                 void loop() override;
                 void dump_config() override;
@@ -38,6 +49,7 @@ namespace esphome {
 
             protected:
                 friend SN3218Channel;
+                friend SN3218Light;
 
                 void set_output_value_(uint8_t channel, uint8_t value) {
                     if (this->output_value[channel] != value) {

@@ -52,7 +52,7 @@ namespace esphome {
                     uint16_t value = this->output_value[channel];
 
                     this->sn3218_set(channel, value);
-                    ESP_LOGI(TAG, "Channel %02u: value=%04u", channel, value);
+                    //ESP_LOGI(TAG, "Channel %02u: value=%03u", channel, value);
                 }
 
                 this->sn3218_update();
@@ -115,6 +115,18 @@ namespace esphome {
         void SN3218Channel::write_state(float state) {
             uint8_t value = static_cast<uint8_t>(roundf(state * 255));
             this->parent_->set_output_value_(this->channel_, value);
+        }
+
+        light::LightTraits SN3218Light::get_traits() {
+            auto traits = light::LightTraits();
+            traits.set_supported_color_modes({light::ColorMode::BRIGHTNESS});
+            return traits;
+        }
+
+        void SN3218Light::write_state(light::LightState *state) {
+            float brightness;
+            state->current_values_as_brightness(&brightness);
+            this->output_->set_level(brightness);
         }
 
     }  // namespace sn3218
