@@ -1,4 +1,5 @@
 # SN3218 component for ESPHome
+##### ***It has the first component for ESP. Of course, instead of "light.py" it could be used for example (light with platform: monochromatic)***
 
 ***(Tested on ESP32-F)***
 
